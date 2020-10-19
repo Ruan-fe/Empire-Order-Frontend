@@ -1,0 +1,42 @@
+<h1 class="mt-4">Seções</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{session.id ? 'Edição': 'Cadastro'}}</li>
+</ol>
+<div class="container">
+    <form #sessionForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                   Seção cadastrada/atualizada com sucesso!
+                </div>    
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input class="form-control" type="text" disabled="true" [ngModel]="session.id" name="id">
+                </div>
+            </div>
+            <div class="col-md-11">
+                <div class="form-group">
+                    <label>Descrição:</label>
+                    <input class="form-control" type="text" [(ngModel)]="session.description" name="description">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" type="submit" *ngIf="!session.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+                <button class="btn btn-primary" type="submit" *ngIf="session.id">
+                    <i class="fa fa-sync-alt"></i> Editar
+                </button>
+                <button class="btn btn-warning ml-2" routerLink="/session-list">
+                    <i class="fa fa-list"></i> Lista
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

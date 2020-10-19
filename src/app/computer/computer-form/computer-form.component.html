@@ -1,0 +1,50 @@
+<h1 class="mt-4">Computadores</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                   Computador cadastrado/atualizada com sucesso!
+                </div>    
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input class="form-control" type="text" disabled="true" [ngModel]="computer.id" name="id">
+                </div>
+            </div>
+            <div class="col-md-11">
+                <div class="form-group">
+                    <label>Descrição:</label>
+                    <input class="form-control" type="text" [(ngModel)]="computer.description" name="description">
+                </div>
+            </div>
+        </div>
+       <div class="row">
+           <div class="col-md-12">
+                <div class="form-group">
+                    <label>Seção: </label>
+                    <select class="form-control" [ngModelOptions] = "{standalone: true}" [(ngModel)] = "computer.idSession">
+                        <option value="">Selecione...</option>
+                        <option *ngFor="let session of sessions" [ngValue]="session.id">
+                            {{session.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success" type="submit" *ngIf="!computer.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+                <button class="btn btn-warning ml-2" routerLink="/computer-list">
+                    <i class="fa fa-list"></i> Lista
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

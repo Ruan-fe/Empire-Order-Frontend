@@ -1,0 +1,64 @@
+<h1 class="mt-4">Seções</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="msgSucesso">
+               {{msgSucesso}}
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-success" routerLink="/session">
+                <i class="fa fa-plus"></i> Novo    
+            </button>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-4">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let session of sessions">
+                        <td>{{session.id}}</td>
+                        <td>{{session.description}}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/session/{{session.id}}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="btn btn-danger ml-1" data-toggle="modal" data-target="#modalDelecao" (click)="preparaDelecao(session)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>    
+    </div>
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Deseja excluir?</h4>
+                </div>
+                <div class="modal-body" *ngIf="sessionSelecionada">
+                    Deseja excluir o {{sessionSelecionada.description}}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" (click)="deletarSession()" data-dismiss="modal">Sim</button>
+                    <button class="btn btn-success" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
